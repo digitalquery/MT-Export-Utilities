@@ -15,9 +15,10 @@ if ARGV.length != 2
 end  
 
 input_file = ARGV[0]
-output_dir = ARGV[1]
+output_dir = ARGV[1].dup
 
-
+# add trailing slash if needed
+output_dir << '/' if output_dir[-1] != '/'
 
 if ! File.file?(ARGV[0])
   puts "Error: input file <#{input_file}> does not exist"
