@@ -34,7 +34,7 @@ file = File.open(input_file)
 
 s = file.read
 
-images=s.scan(/img .*src="(.+[gGfFpP])" w/)
+images=s.scan(/img .*src=['"](.+[gGfFpP])['"]/)
 
 images.each {|image| 
   
