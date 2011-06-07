@@ -13,7 +13,7 @@
 
 
 if ARGV.length != 2
-  puts "Usage: extract_images [input_file] [spec_file] "
+  puts "Usage: rewrite_urls [input_file] [spec_file] "
   exit 0
 end  
 
