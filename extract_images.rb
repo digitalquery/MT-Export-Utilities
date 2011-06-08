@@ -34,18 +34,20 @@ file = File.open(input_file)
 
 s = file.read
 
-images=s.scan(/img .*src=['"](.+[gGfFpP])['"]/)
+images=s.scan(/img .*src=['"](.+(JPG|jpg|gif|GIF|bmp|BMP|png|PNG|jpeg|JPEG))['"]/)
 
 images.each {|image| 
+
+  filename = URI.unescape(File.basename(image[0].to_s))
   
-  filename = URI.unescape(File.basename(image.to_s))
+  
   
   # check whether image exists
   if File.exists?(output_dir+filename.to_s) then
     puts "Warning: File #{filename} already exists \n" 
   else
-    puts "Downloading " + URI.unescape(image.to_s) + " to " + filename.to_s
-    rio(image.to_s) > rio(output_dir+filename.to_s)
+    puts "Downloading " + URI.unescape(image[0].to_s) + " to " + filename.to_s
+    rio(image[0].to_s) > rio(output_dir+filename.to_s)
   end
 
   }
